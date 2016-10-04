@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Image Slider</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="jquery.cycle.all.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css">
+
+	
+
+</head>
+<body ng-app = "myApp" ng-controller="myCtrl">
+<div id="photos">
+
+<div id = "pager"></div>
+<div id = "play">&Delta;</div>
+<div id = "pause">&asymp;</div>
+<div id = "next">&rang;</div>
+<div id = "prev">&lang;</div>
+
+
+	<div id = "slider">
+		<div ng-repeat="image in images" class = "items">
+		<img src="./img/{{image.picture}}">
+			<div class = "info">
+				<h2>{{image.title}}</h2>
+				<p>{{image.description}}<a href="{{image.link[0]}}">{{image.link[1]}}</a></p>
+			</div>
+		</div>
+</div>
+
+<!--AngularJS Controller for the page with data -->
+<script type="text/javascript">
+	var myApp = angular.module("myApp", []);
+	myApp.controller("myCtrl", function($scope) {
+		$scope.images = [{
+	"picture": "1.jpg",
+	"title": "Sunset",
+	"description": "Description",
+	"link": ["www.google.com", "text"]
+}, {
+	"picture": "2.jpg",
+	"title": "Sunset",
+	"description": "Description",
+	"link": ["www.google.com", "text"]
+}, {
+	"picture": "3.jpg",
+	"title": "Sunset",
+	"description": "Description",
+	"link": ["www.google.com", "text"]
+}, {
+	"picture": "4.jpg",
+	"title": "Sunset",
+	"description": "Description",
+	"link": ["www.google.com", "text"]
+}]
+	});
+</script>
+
+
+
+<!--JQuery Script for the slider -->
+<script type="text/javascript">
+	$( document ).ready(function() {
+    $("#slider").cycle({
+			fx: "scrollHorz",
+			next: "#next",
+			prev: "#prev",
+			pager: "#pager",
+			timeout: 2000,
+			speed: 900,
+			pause:1
+		})
+$(function(){
+		$("#play").click(function(){
+			$("#slider").cycle('resume');
+			return false;
+		})
+
+		$("#pause").click(function(){
+			$("#slider").cycle('pause');
+			return false;
+		})
+	})
+});
+		
+	
+	</script>
+
+
+</body>
+</html>
